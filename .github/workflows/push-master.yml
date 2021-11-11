@@ -1,0 +1,46 @@
+name: Master
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  master:
+    if: "! startsWith(github.event.head_commit.message, '[CI Skip]')"
+    strategy:
+      matrix:
+        step: ['build:release']
+    name: ${{ matrix.step }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        token: ${{ secrets.GH_PAT }}
+    - name: ${{ matrix.step }}
+      env:
+        GH_PAT: ${{ secrets.GH_PAT }}
+        GH_RELEASE_GITHUB_API_TOKEN: ${{ secrets.GH_PAT }}
+        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      run: |
+        yarn install --immutable | grep -v 'YN0013'
+        yarn ${{ matrix.step }}
+
+  # publish to ipfs when a release is detected
+  ipfs:
+    if: "startsWith(github.event.head_commit.message, '[CI Skip] release/stable')"
+    strategy:
+      matrix:
+        step: ['build:release:ipfs']
+    name: ${{ matrix.step }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: ${{ matrix.step }}
+      env:
+        CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+        PINATA_API_KEY: ${{ secrets.PINATA_API_KEY }}
+        PINATA_SECRET_KEY: ${{ secrets.PINATA_SECRET_KEY }}
+      run: |
+        yarn install --immutable | grep -v 'YN0013'
+        ./scripts/ipfsPrep.sh
+        yarn ${{ matrix.step }}

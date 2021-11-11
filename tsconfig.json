@@ -1,0 +1,20 @@
+{
+  "extends": "@axia-js/dev/config/tsconfig.json",
+  "exclude": [
+    "build/**/*",
+    "**/build/**/*"
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths":
+    {
+      "@axia-js/phishing": ["packages/phishing/src"],
+      "@axia-js/phishing/*": ["packages/phishing/src/*"]
+    },
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "typeRoots": [
+      "./node_modules/@types"
+    ]
+  }
+}

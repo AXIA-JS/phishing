@@ -1,0 +1,25 @@
+{
+  "name": "@axia-js/phishing",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Simple phishing scripts from a central source",
+  "main": "index.js",
+  "sideEffects": false,
+  "author": "Sankar boro <sankar.boro@zeeve.io>",
+  "maintainers": [],
+  "contributors": [],
+  "license": "Apache-2.0",
+  "bugs": "https://github.com/axia-js/phishing/issues",
+  "repository": "github.com:axia-js/phishing",
+  "homepage": "https://github.com/axia-js/common/tree/master/packages/phishing#readme",
+  "dependencies": {
+    "@axia-js/util": "0.1.0",
+    "@axia-js/util-crypto": "0.1.0",
+    "@axia-js/x-fetch": "0.1.0",
+    "@babel/runtime": "^7.15.4"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.3",
+    "js-yaml": "^4.1.0"
+  }
+}

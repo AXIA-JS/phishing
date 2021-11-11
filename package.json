@@ -1,0 +1,36 @@
+{
+  "repository": "https://github.com/axia-js/phishing",
+  "author": "Sankar boro <sankar.boro@zeeve.io>",
+  "license": "Apache-2",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "resolutions": {
+    "typescript": "^4.4.3"
+  },
+  "scripts": {
+    "build": "axia-dev-build-ts",
+    "build:extra": "node scripts/sortAll.mjs",
+    "build:release": "axia-ci-ghact-build --skip-beta",
+    "build:release:ipfs": "node scripts/ipfsUpload.mjs",
+    "build:rollup": "axia-exec-rollup --config",
+    "lint": "axia-dev-run-lint",
+    "clean": "axia-dev-clean-build",
+    "phishing:addrcheck": "axia-dev-run-test --runInBand --detectOpenHandles packages/phishing/src/addrcheck",
+    "phishing:crosscheck": "axia-dev-run-test --runInBand --detectOpenHandles packages/phishing/src/crosscheck",
+    "postinstall": "axia-dev-yarn-only",
+    "test": "axia-dev-run-test --coverage --runInBand --detectOpenHandles --testPathIgnorePatterns addrcheck --testPathIgnorePatterns crosscheck"
+  },
+  "devDependencies": {
+    "@axia-js/dev": "0.1.0",
+    "@babel/core": "^7.15.5",
+    "@types/jest": "^27.0.1"
+  },
+  "version": "0.1.0",
+  "dependencies": {
+    "@pinata/sdk": "^1.1.23",
+    "dnslink-cloudflare": "^3.0.0"
+  },
+  "packageManager": "yarn@3.0.1"
+}
