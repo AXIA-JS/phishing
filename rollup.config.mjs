@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @axia-js/api authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { createBundle } from '@axia-js/dev/config/rollup';
+import { createBundle } from '@axia-js/dev/config/rollup.js';
 
 const pkgs = [
   '@axia-js/phishing'
